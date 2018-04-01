@@ -8,6 +8,17 @@ module APIv2
       requires :signature,  type: String,  desc: "The signature of your request payload, generated using your secret key."
     end
 
+    params :registration do
+      requires :email, type: String,  desc: "Email"
+      requires :password, type: String, desc: "Password"
+      requires :confirm_password, type: String,  desc: "Confirm Password"
+    end
+
+    params :signin do
+      requires :email, type: String,  desc: "Email"
+      requires :password, type: String, desc: "Password"
+    end
+
     params :market do
       requires :market, type: String, values: ::Market.all.map(&:id), desc: ::APIv2::Entities::Market.documentation[:id]
     end

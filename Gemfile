@@ -15,6 +15,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'doorkeeper', '~> 1.4.1'
 gem 'omniauth', '~> 1.2.1'
 gem 'omniauth-identity', '~> 1.1.1'
+gem 'grape_token_auth'
 
 gem 'figaro'
 gem 'hashie'
@@ -84,7 +85,10 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'byebug'
+  gem 'spring'
 end
+
+gem 'letter_opener', group: :development
 
 group :test do
   gem 'database_cleaner'

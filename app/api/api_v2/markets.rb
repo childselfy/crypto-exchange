@@ -5,6 +5,5 @@ module APIv2
     get "/markets" do
       present Market.all, with: APIv2::Entities::Market
     end
-
   end
 end

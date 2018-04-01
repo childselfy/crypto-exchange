@@ -1,8 +1,8 @@
 require_relative 'errors'
 require_relative 'validations'
-
 module APIv2
   class Mount < Grape::API
+
     PREFIX = '/api'
 
     version 'v2', using: :path
@@ -24,7 +24,6 @@ module APIv2
     before do
       header 'Access-Control-Allow-Origin', '*'
     end
-
     mount Markets
     mount Tickers
     mount Members
@@ -34,6 +33,7 @@ module APIv2
     mount Trades
     mount K
     mount Tools
+    mount Registrations
 
     base_path = Rails.env.production? ? "#{ENV['URL_SCHEMA']}://#{ENV['URL_HOST']}/#{PREFIX}" : PREFIX
     add_swagger_documentation base_path: base_path,

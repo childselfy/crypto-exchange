@@ -14,7 +14,7 @@ Doorkeeper.configure do
     end
   end
 
-  # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
+  #If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
   admin_authenticator do
     user = Member.enabled.where(id: session[:member_id]).first
     if user && user.activated? && user.admin?

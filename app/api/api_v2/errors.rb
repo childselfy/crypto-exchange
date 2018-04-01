@@ -39,6 +39,24 @@ module APIv2
     end
   end
 
+  class RegistrationError < Error
+    def initialize(e)
+      super code: 2013, text: "Registration failed. Reason: #{e}", status: 400
+    end
+  end
+
+  class LoginError < Error
+    def initialize
+      super code: 2014, text: "Invalid Email/Password.", status: 401
+    end
+  end
+
+  class ActivationError < Error
+    def initialize(text)
+      super code: 2015, text: text, status: 401
+    end
+  end
+
   class CreateOrderError < Error
     def initialize(e)
       super code: 2002, text: "Failed to create order. Reason: #{e}", status: 400

@@ -6,10 +6,15 @@ module APIv2
     params do
       use :auth
     end
+
     get "/members/me" do
       authenticate!
       present current_user, with: APIv2::Entities::Member
     end
 
+    get '/email_verified' do
+      authenticate!
+      current_user.activated?
+    end
   end
 end
