@@ -162,6 +162,10 @@ class Member < ActiveRecord::Base
     end
   end
 
+  def generate_api_keys
+    api_tokens.create(scopes: 'all')
+  end
+
   def identity
     authentication = authentications.find_by(provider: 'identity')
     authentication ? Identity.find(authentication.uid) : nil

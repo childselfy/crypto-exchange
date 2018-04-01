@@ -1,4 +1,3 @@
-
 module APIv2
   class Registrations < Grape::API
 
@@ -10,6 +9,7 @@ module APIv2
     end
     post "/signup" do
       member = create_identity params
+      member.generate_api_keys
       present member, with: APIv2::Entities::Member
     end
 
@@ -20,7 +20,9 @@ module APIv2
     post "/signin" do
       check_authentication
       member = handle_member_object
-      raise ActivationError, 'Email Not Verified' unless member.activated?
+      api_tokens = member.api_tokens.last
+      raise ActivationError, 'Email Not Verified' and return unless member.activated?
+      present api_tokens, with: APIv2::Entities::APIToken
     end
   end
 end
